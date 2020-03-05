@@ -285,10 +285,11 @@ public void N_ArmsFix_OnClientReady(int client)
 		{
 			case CS_TEAM_T:
 			{
-				if(IsFakeClient(client) || TSelected[client] == -1)
+				if(IsFakeClient(client) || TSelected[client] < 0)
 				{
-					SetEntPropString(client, Prop_Send, "m_szArmsModel", TerrorArms[ GetRandomInt(0, TSkins_Count-1) ]);
-					SetEntityModel(client, TerrorSkin[ GetRandomInt(0, TSkins_Count-1) ] );
+					int rand = GetRandomInt(0, TSkins_Count-1);
+					SetEntPropString(client, Prop_Send, "m_szArmsModel", TerrorArms[ rand ]);
+					SetEntityModel(client, TerrorSkin[ rand ] );
 				}
 				else 
 				{
@@ -301,10 +302,11 @@ public void N_ArmsFix_OnClientReady(int client)
 			}
 			case CS_TEAM_CT:
 			{
-				if(IsFakeClient(client) || CTSelected[client] == -1)
+				if(IsFakeClient(client) || CTSelected[client] < 0)
 				{
-					SetEntPropString(client, Prop_Send, "m_szArmsModel", CTerrorArms[ GetRandomInt(0, CTSkins_Count-1) ]);
-					SetEntityModel(client, CTerrorSkin[ GetRandomInt(0, CTSkins_Count-1) ]);
+					int rand = GetRandomInt(0, CTSkins_Count-1);
+					SetEntPropString(client, Prop_Send, "m_szArmsModel", CTerrorArms[ rand ]);
+					SetEntityModel(client, CTerrorSkin[ rand ]);
 				}
 				else 
 				{
