@@ -237,7 +237,7 @@ void LoadConfig()
 		kv.GotoFirstSubKey();
 		
 		AddMenuItem(ct_skins_menu, "-1", "Random");
-		TSkins_Count = 0;
+		CTSkins_Count = 0;
 
 		// Lets begin
 		do
