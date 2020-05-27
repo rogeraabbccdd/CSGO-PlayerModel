@@ -124,14 +124,21 @@ public int MenuHandler_ChooseSkin_T(Menu menu, MenuAction action, int client,int
     int skin = StringToInt(skin_id, sizeof(skin_id));
 
     // Correct. So lets save the selected skin
-    TSelected[client] = skin;
-    SetClientCookie(client, sc_cookie_t, TerrorName[skin]);
-
-    if(skin > -1 && IsPlayerAlive(client) && GetClientTeam(client) == CS_TEAM_T)
-		{	
+    if (skin == -1)
+	{
+		// User selected random
+		skin = GetRandomInt(0, TSkins_Count - 1);
+	}
+    if (skin > -1)
+	{	
+		TSelected[client] = skin;
+    	SetClientCookie(client, sc_cookie_t, TerrorName[skin]);
+		if (IsPlayerAlive(client) && GetClientTeam(client) == CS_TEAM_T)
+		{
 			SetEntityModel(client, TerrorSkin[skin]);
 			SetEntPropString(client, Prop_Send, "m_szArmsModel", TerrorArms[skin]);
 		}
+	}
   }
 }
 
@@ -148,14 +155,21 @@ public int MenuHandler_ChooseSkin_CT(Menu menu, MenuAction action, int client,in
     int skin = StringToInt(skin_id, sizeof(skin_id));
 
     // Correct. So lets save the selected skin
-    CTSelected[client] = skin;
-    SetClientCookie(client, sc_cookie_ct, CTerrorName[skin]);
-
-    if(skin > -1 && IsPlayerAlive(client) && GetClientTeam(client) == CS_TEAM_CT)
-		{	
+    if (skin == -1)
+	{
+		// User selected random
+		skin = GetRandomInt(0, CTSkins_Count - 1);
+	}
+    if(skin > -1)
+	{	
+		CTSelected[client] = skin;
+    	SetClientCookie(client, sc_cookie_ct, CTerrorName[skin]);
+		if (IsPlayerAlive(client) && GetClientTeam(client) == CS_TEAM_CT)
+		{
 			SetEntityModel(client, CTerrorSkin[skin]);
 			SetEntPropString(client, Prop_Send, "m_szArmsModel", CTerrorArms[skin]);
 		}
+	}
   }
 }
 
